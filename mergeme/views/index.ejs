@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>NodeShare</title>
+  <style>
+    body { font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; max-width: 700px; margin: 40px auto; background:#fff; color:#111; }
+    h1   { color:#2a7a2a; }
+    form { margin: 20px 0; }
+    input, textarea { width:100%; padding:8px; margin:4px 0; background:#f9f9f9; color:#111; border:1px solid #ccc; }
+    button { padding:8px 16px; background:#2a7a2a; color:#fff; border:none; cursor:pointer; font-weight:bold; }
+    .post-list a { color:#1a6aaa; text-decoration:none; display:block; padding:4px 0; border-bottom:1px solid #ddd; }
+    .post-list a:hover { color:#000; }
+  </style>
+</head>
+<body>
+  <h1>NodeShare</h1>
+  <p>글을 작성하고 공유하세요.</p>
+
+  <form action="/post" method="POST">
+    <input  name="title" placeholder="제목" required>
+    <textarea name="body" rows="4" placeholder="내용" required></textarea>
+    <button type="submit">작성</button>
+  </form>
+
+  <hr>
+  <h2>게시글 목록</h2>
+  <div class="post-list">
+    <% if (posts.length === 0) { %>
+      <p style="color:#888">아직 게시글이 없습니다.</p>
+    <% } else { %>
+      <% posts.forEach(function(p) { %>
+        <a href="/post/<%= p.id %>"><%= p.title %></a>
+      <% }); %>
+    <% } %>
+  </div>
+</body>
+</html>
